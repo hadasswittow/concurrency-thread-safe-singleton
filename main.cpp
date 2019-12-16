@@ -1,12 +1,14 @@
 #include <iostream>
+#include <cstdio>
 #include "Singleton.h"
 
 #define ThreadAmount 8
 
 void* create_singleton(void *i)
 {
-    volatile Singleton * volatile s = Singleton::getInstance();
-    std::cout << "Thread number: " << i << " has instance: " << s << std::endl;
+    int *id = (int*)(i);
+    Singleton * s = Singleton::getInstance();
+    printf("Thread number: %d has instance: %p\n" ,i,s);
 }
 
 int main()
